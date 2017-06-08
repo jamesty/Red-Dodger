@@ -2,7 +2,8 @@ package {
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	/**
-	 * ...
+	 * The GameOver class handles all the items
+	 * displayed in screen during the game over state.
 	 * @author James
 	 */
 	public class GameOver {

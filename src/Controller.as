@@ -11,7 +11,8 @@ package {
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	/**
-	 * ...
+	 * The Controller class controls the whole flow and
+	 * transition of the game.
 	 * @author James
 	 */
 	public class Controller extends Sprite {
@@ -31,7 +32,7 @@ package {
 		}
 
 		/**
-		 * Prepare game menu
+		 * Initialize and display the main menu of the game.
 		 */
 		public function menuInitialize():void {
 			// Prepare game main menu
@@ -97,20 +98,27 @@ package {
 		 * is outside of stage.
 		 */
 		public function checkCollision(event:TimerEvent):void {
-			for each (var cannon:Cannon in cannonList) {
-				if (cannon.checkCollision(this.player)) {
+			var i:int = 0;
+			while (i < cannonList.length) {
+				if (cannonList[i].checkCollision(this.player)) {
 					setGameOver();
-					return;
+					i = cannonList.length;
 				}
+				i++;
 			}
 		}
 		
+		/**
+		 * Switches the game into the game over state by removing
+		 * all the event listeners and stopping all the timers.
+		 */
 		public function setGameOver():void {
 			for each (var cannon:Cannon in this.cannonList) {
 				cannon.removeListeners();
 			}
 			this.gameTicks.stop();
 			this.playTimer.stop();
+			this.cannonTimer.removeEventListener(TimerEvent.TIMER, addCannon);
 			this.gameOver = new GameOver();
 			stage.addChild(this.gameOver.getGameOverTitle());
 			stage.addChild(this.gameOver.getGameOverButton());
@@ -118,8 +126,8 @@ package {
 		}
 		
 		/**
-		 * Remove all game components and game over menu.
-		 * Then return to main menu.
+		 * Switch back to the main menu and remove the
+		 * game over state components.
 		 */
 		public function backToMenu(event:MouseEvent):void {
 			for each (var cannon:Cannon in this.cannonList) {

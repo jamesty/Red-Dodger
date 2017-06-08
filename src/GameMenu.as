@@ -6,7 +6,8 @@ package {
 	import flash.geom.Rectangle;
 	import flash.text.TextField
 	/**
-	 * ...
+	 * The GameMenu class handles all the displayed items
+	 * in screen while the game is in the main menu.
 	 * @author James
 	 */
 	public class GameMenu {

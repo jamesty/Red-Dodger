@@ -3,7 +3,8 @@ package {
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	/**
-	 * ...
+	 * The GameStatistics class provides information
+	 * on current statistics in the game.
 	 * @author James
 	 */
 	public class GameStatistics {

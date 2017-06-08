@@ -4,7 +4,8 @@ package {
 	import flash.events.TimerEvent;
 	import flash.ui.Keyboard
 	/**
-	 * ...
+	 * The Player class represents the player in this game
+	 * and contains the actions that a player can perform.
 	 * @author James
 	 */
 	public class Player extends Sprite {

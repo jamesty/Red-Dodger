@@ -4,7 +4,9 @@ package {
 	import flash.net.URLRequest;
 	import flash.utils.Timer;
 	/**
-	 * ...
+	 * The Cannon class contains all the behaviors that a
+	 * cannon has in this game including shooting projectiles
+	 * out to the player.
 	 * @author James
 	 */
 	public class Cannon extends Loader {
@@ -16,13 +18,17 @@ package {
 		public function Cannon(gameTicks:Timer, controller:Controller) {
 			this.gameTicks = gameTicks;
 			this.load(new URLRequest("imgs/cannon.png"));
-			this.x = 0;
+			this.x = generateRandomXPosition();
 			this.addProjectileTimer = new Timer(2000);
 			this.addProjectileTimer.addEventListener(TimerEvent.TIMER, addProjectile);
 			this.addProjectileTimer.start();
 			this.controller = controller;
 		}
 		
+		/**
+		 * Updates the cannon location on game tick.
+		 * @param	event The timer event that triggered this function.
+		 */
 		public function updateOnTick(event:TimerEvent):void {
 			// Move the cannon
 			if (this.x < 0) {
@@ -43,6 +49,11 @@ package {
 			this.gameTicks.addEventListener(TimerEvent.TIMER, newProjectile.updateProjectile);
 		}
 
+		/**
+		 * Checks if any of this cannon's projectile has hit the player.
+		 * @param	player The player object.
+		 * @return Return True a projectile has collided with the player.
+		 */
 		public function checkCollision(player:Player):Boolean {
 			var i:int = 0;
 			while (i < this.projectiles.length) {
@@ -69,12 +80,22 @@ package {
 		}
 		
 		/**
-		 * Removes all projectiles froms stage.
+		 * Removes all projectiles from the stage that the
+		 * cannon instance currently has.
 		 */
 		public function removeProjectiles():void {
 			for each (var projectile:Projectile in this.projectiles) {
 				stage.removeChild(projectile);
 			}
+		}
+
+		/**
+		 * Generates a random X position for the cannon.
+		 * @return Return a random X number within range of stage width.
+		 */
+		private function generateRandomXPosition():Number {
+			var randomPosition:Number = Math.floor(Math.random() * 800);
+			return randomPosition;
 		}
 	}
 
