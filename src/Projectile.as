@@ -11,13 +11,18 @@ package {
 	 */
 	public class Projectile extends Loader {
 		private var projectileSpeed:Number;
-		public function Projectile(speed:Number) {
+		public function Projectile(xLoc:Number, yLoc:Number, speed:Number) {
 			this.load(new URLRequest("imgs/Projectile.png"));
-			this.x = generateRandomPosition();
-			this.y = 0;
+			this.x = xLoc;
+			this.y = yLoc;
 			this.projectileSpeed = speed;
 		}
 		
+		/**
+		 * Update the projectile location and check if it
+		 * has reached outside the stage.
+		 * @return True if projectile is outside of stage.
+		 */
 		public function updateProjectile(event:TimerEvent):void {
 			this.y += this.projectileSpeed
 		}

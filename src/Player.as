@@ -35,10 +35,10 @@ package {
 				playerSpeedY += 2;
 			}
 			if (keyDown[Keyboard.D] || keyDown[Keyboard.RIGHT]) {
-				playerSpeedX += 2;
+				playerSpeedX += 1;
 			}
 			if (keyDown[Keyboard.A] || keyDown[Keyboard.LEFT]) {
-				playerSpeedX -= 2;
+				playerSpeedX -= 1;
 			}
 		}
 		
