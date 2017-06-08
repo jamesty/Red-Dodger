@@ -11,13 +11,11 @@ package {
 	 */
 	public class Projectile extends Loader {
 		private var projectileSpeed:Number;
-		public function Projectile() {
+		public function Projectile(speed:Number) {
 			this.load(new URLRequest("imgs/Projectile.png"));
-			this.scaleX = 0.50;
-			this.scaleY = 0.50;
 			this.x = generateRandomPosition();
 			this.y = 0;
-			this.projectileSpeed = 2;
+			this.projectileSpeed = speed;
 		}
 		
 		public function updateProjectile(event:TimerEvent):void {
@@ -28,7 +26,7 @@ package {
 			return this.hitTestObject(player);
 		}
 		
-		public function generateRandomPosition():Number {
+		private function generateRandomPosition():Number {
 			var randomPosition:Number = Math.floor(Math.random() * 800);
 			return randomPosition;
 		}

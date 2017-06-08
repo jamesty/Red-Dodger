@@ -15,7 +15,7 @@ package {
 		private var keyDown:Object = {};
 		public function Player() {
 			this.graphics.beginFill(0xff0000);
-			this.graphics.drawRect(50, 550, 30, 50);
+			this.graphics.drawRect(0, 550, 30, 50);
 			this.graphics.endFill();
 		}
 		
@@ -50,10 +50,18 @@ package {
 			this.y += playerSpeedY;
 			this.x += playerSpeedX;
 			playerSpeedX *= friction;
-			// If the player has reached the floor, stop player descent.
+			// Prevent player from going outside the box
 			if (this.y >= 0) {
 				this.y = 0;
 				playerSpeedY = 0;
+			}
+			if (this.x + this.width > stage.stageWidth) {
+				this.x = stage.stageWidth - this.width;
+				playerSpeedX = 0;
+			}
+			if (this.x < stage.x) {
+				this.x = stage.x;
+				playerSpeedX = 0;
 			}
 		}
 	}
